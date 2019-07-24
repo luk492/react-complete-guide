@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -71,10 +71,10 @@ class App extends Component {
         </div>
       );
 
-      style.backgroundColor = 'red';
+      style.backgroundColor = classes.red;
     }
     return (
-        <div className="App">
+        <div className={classes.App}>
           <h1>Hi</h1>
           <button style={style} onClick={this.togglePersonsHandler}>Switch Name</button>
           {persons}
