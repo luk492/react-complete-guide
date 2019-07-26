@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import classes from './App.css';
-import Person from './Person/Person';
+import classes from '../containers/App.css';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
+
 
 class App extends Component {
   state = {
@@ -24,7 +26,7 @@ class App extends Component {
     showPersons: false
   };
 
-  deletePersonHandler(idx) {
+  deletePersonHandler = (idx) => {
     const persons = this.state.persons.slice();
     persons.splice(idx, 1);
     this.setState({persons})
@@ -63,11 +65,7 @@ class App extends Component {
     if(this.state.showPersons) {
       persons = (
         <div>
-          {
-            this.state.persons.map((person, idx) => {
-              return <Person changed={(event) => this.nameChangedHandler(event, person.id)} click={this.deletePersonHandler.bind(this, idx)} name={person.name} age={person.age} key={person.id}/>
-            })
-          }
+          <Persons persons={this.state.persons} clicked={this.deletePersonHandler} changed={this.nameChangedHandler}/>
         </div>
       );
 
@@ -75,8 +73,7 @@ class App extends Component {
     }
     return (
         <div className={classes.App}>
-          <h1>Hi</h1>
-          <button style={style} onClick={this.togglePersonsHandler}>Switch Name</button>
+          <Cockpit style={style} clicked={this.togglePersonsHandler}/>
           {persons}
         </div>
       );
